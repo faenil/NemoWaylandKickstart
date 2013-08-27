@@ -19,7 +19,7 @@ repo --name=nemo-adaptation-n950-n9 --baseurl=http://repo.merproject.org/obs/nem
 repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_armv7hl/ 
 repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/ti:/omap3:/n9xx-common/@NEMO_RELEASE@_armv7hl/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
-#repo --name=faenil --baseurl=http://repo.merproject.org/obs/home:/faenil/latest_armv7hl/
+repo --name=faenil --baseurl=http://repo.merproject.org/obs/home:/faenil/latest_armv7hl/
 
 %packages
 @Mer Core
