@@ -15,11 +15,9 @@ user --name nemo  --groups audio,video --password nemo
 repo --name=mer-core --baseurl=http://releases.merproject.org/releases/@MER_RELEASE@/builds/armv7hl/packages  --debuginfo
 repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/ux/@NEMO_RELEASE@_armv7hl/ 
 repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/apps/@NEMO_RELEASE@_armv7hl/ 
-repo --name=nemo-adaptation-n950-n9 --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/ti:/omap3:/n950-n9/@NEMO_RELEASE@_armv7hl/ 
 repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_armv7hl/ 
-repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/ti:/omap3:/n9xx-common/@NEMO_RELEASE@_armv7hl/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
-repo --name=faenil --baseurl=http://repo.merproject.org/obs/home:/faenil/latest_armv7hl/
+
 
 %packages
 @Mer Core
@@ -48,46 +46,6 @@ maliit-plugins-maliit-keyboard
 
 # We're getting rid of most of nemo-mw pattern
 #@nemo-ux
-
-
-
-#------ BEGIN N9-N950-SUPPORT -------
-bme-rm-680-bin
-contextkit-plugin-power-bme
-contextkit-plugin-kbslider 
-dsme
-gstreamer0.10-nokia-videosrc
-gst-omapfb
-kernel-adaptation-n950
-n950-camera-fw
-nokia-n950-configs
-omap-update-display
-#pulseaudio-module-x11
-pulseaudio-modules-n900-cmtspeech
-pulseaudio-modules-n900-mainvolume
-pulseaudio-modules-n900-music
-pulseaudio-modules-n900-record
-pulseaudio-modules-n900-voice
-pulseaudio-settings-n950
-systemd-console-ttyS0
-
-
-ti-omap3-sgx-libEGL
-ti-omap3-sgx-libGLESv1
-ti-omap3-sgx-libGLESv2
-
-
-ti-wl1271-firmware
-ti-wl1273-bt-firmware
-ti-wl1273-fm-radio-firmware
-udev-rules-n950
-wl1271-cal-bin
-
-#Recommends
-policy-settings-basic-n950
-usb-moded-config-n950-n9
-#------ END N9-N950-SUPPORT -------
-
 
 #------ BEGIN NEMO-RND -------
 connman-test
@@ -133,21 +91,21 @@ plymouth-lite
 #------ END NEMO-UX ---------
 
 #------ START NEMO-APPS------
-fingerterm
-qt-components-qt5-gallery
-qmlcalc
-qmlnotes
-qmlmaps
-qmlgallery
-qmlcalendar
-qmlpinquery
-qmlmusicplayer
-qmlfilemuncher
-qmlmail
-qmlsettings
-voicecall-ui-reference
-qmlcontacts
-qmlmessages
+#fingerterm
+#qt-components-qt5-gallery
+#qmlcalc
+#qmlnotes
+#qmlmaps
+#qmlgallery
+#qmlcalendar
+#qmlpinquery
+#qmlmusicplayer
+#qmlfilemuncher
+#qmlmail
+#qmlsettings
+#voicecall-ui-reference
+#qmlcontacts
+#qmlmessages
 #------ END NEMO-APPS--------
 
 qt5-plugin-generic-evdev
@@ -158,9 +116,8 @@ qt5-plugin-imageformat-jpeg
 qt5-plugin-platform-eglfs 
 qt5-qtsvg-plugin-imageformat-svg
 
-nemo-configs-n950-n9
-ti-omap3-sgx-wayland-wsegl
-
+meego-rpm-config
+glibc-devel
 %end
 
 %post

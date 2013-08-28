@@ -108,6 +108,7 @@ mapplauncherd-qt5
 nemo-firstsession
 nemo-mobile-session-wayland
 nemo-theme-default
+meegotouch-theme-darko
 lipstick-colorful-home-qt5
 # Wifi indicator needs this.
 contextkit-plugin-mce
@@ -116,6 +117,23 @@ ce-backgrounds
 plymouth-lite
 #------ END NEMO-UX ---------
 
+#------ START NEMO-APPS------
+fingerterm
+qt-components-qt5-gallery
+qmlcalc
+qmlnotes
+qmlmaps
+qmlgallery
+qmlcalendar
+qmlpinquery
+qmlmusicplayer
+qmlfilemuncher
+qmlmail
+qmlsettings
+voicecall-ui-reference
+qmlcontacts
+qmlmessages
+#------ END NEMO-APPS--------
 
 #contribution by Jolla
 qt5-plugin-generic-vboxtouch
@@ -125,12 +143,16 @@ virtualbox-guest-modules
 virtualbox-guest-tools
 
 
-fingerterm
-qt-components-qt5-gallery
-
 %end
 
 %post
+
+Config_Src=`gconftool-2 --get-default-source`
+
+#Set theme name
+gconftool-2 --direct --config-source $Config_Src \
+  -s -t string /meegotouch/theme/name "darko"
+
 ## rpm-rebuilddb.post from mer-kickstarter-configs package
 # Rebuild db using target's rpm
 echo -n "Rebuilding db using target rpm.."
