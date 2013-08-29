@@ -37,9 +37,6 @@ droid-serif-fonts
 
 # Nemo
 @nemo-mw
-# We add this package to the MW
-maliit-plugins-maliit-keyboard
-
 
 # Deleting some Qt4 stuff from the rnd pattern
 #@nemo-rnd
