@@ -112,6 +112,9 @@ qt5-qtwayland-wayland_egl-examples
 qt5-plugin-imageformat-jpeg 
 qt5-plugin-platform-eglfs 
 qt5-qtsvg-plugin-imageformat-svg
+qt5-qtmultimedia-gsttools
+qt5-qtmultimedia-plugin-mediaservice-gstmediaplayer
+gst-plugins-good
 
 meego-rpm-config
 glibc-devel

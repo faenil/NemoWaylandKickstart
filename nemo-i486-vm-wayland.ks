@@ -140,6 +140,9 @@ qt5-plugin-generic-vboxtouch
 virtualbox-guest-modules
 virtualbox-guest-tools
 
+qt5-qtmultimedia-gsttools
+qt5-qtmultimedia-plugin-mediaservice-gstmediaplayer
+gst-plugins-good
 
 %end
 
