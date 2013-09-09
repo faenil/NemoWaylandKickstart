@@ -20,152 +20,85 @@ repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/lates
 
 
 %packages
-@Mer Core
-@Mer Connectivity 
 
-cjkuni-fonts
-liberation-fonts-common
-liberation-mono-fonts
-liberation-sans-fonts
-liberation-serif-fonts
-droid-sans-fonts
-droid-sans-mono-fonts
-droid-serif-fonts
-
-# No Xorg stuff
-#@mer-minimal-xorg
-
-# Nemo
-@nemo-mw
-
-# Deleting some Qt4 stuff from the rnd pattern
-#@nemo-rnd
-
-# We're getting rid of most of nemo-mw pattern
-#@nemo-ux
-
-#------ BEGIN NEMO-RND -------
-connman-test
-diffutils
-gdb
-iotop
-libaccounts-glib-tools
-#edited (it was libcommhistory-tools)
-libcommhistory-qt5-tools
-#edited (it was lipstick-tools)
-lipstick-qt5-tools
-lynx
-mce-tools
-mer-gfx-tests
-nano
-ofono-tests
-openssh-clients
-openssh-server
-#edited (it was nemo-qml-plugin-contacts-tools)
-nemo-qml-plugin-contacts-qt5-tools
-screen
-tar
-tracker-utils
-vim-enhanced
-vim-minimal
-wget
-#------ END NEMO-RND -------
-
-#------ BEGIN NEMO-UX -------
-#Added to official pattern
-mapplauncherd-qt5
-
-nemo-firstsession
-nemo-mobile-session-wayland
-nemo-theme-default
-meegotouch-theme-darko
-lipstick-colorful-home-qt5
-# Wifi indicator needs this.
-contextkit-plugin-mce
-# For splash screen
-ce-backgrounds
-plymouth-lite
-#------ END NEMO-UX ---------
-
-#------ START NEMO-APPS------
-#fingerterm
-#qt-components-qt5-gallery
-#qmlcalc
-#qmlnotes
-#qmlmaps
-#qmlgallery
-#qmlcalendar
-#qmlpinquery
-#qmlmusicplayer
-#qmlfilemuncher
-#qmlmail
-#qmlsettings
-#voicecall-ui-reference
-#qmlcontacts
-#qmlmessages
-#------ END NEMO-APPS--------
-
-qt5-plugin-generic-evdev
-qt5-qtdeclarative-qmlscene
-qt5-qtwayland-wayland_egl
-qt5-qtwayland-wayland_egl-examples 
-qt5-plugin-imageformat-jpeg 
-qt5-plugin-platform-eglfs 
-qt5-qtsvg-plugin-imageformat-svg
-qt5-qtmultimedia-gsttools
-qt5-qtmultimedia-plugin-mediaservice-gstmediaplayer
-gst-plugins-good
-
+zypper
+rpm-build
 meego-rpm-config
+shadow-utils
+passwd
+gdb
+strace
+vim
+
 glibc-devel
+mesa-llvmpipe-libEGL-devel
+mesa-llvmpipe-libGLESv2-devel
+qt5-qmake
+qt5-tools
+qt5-default
+qt5-qttools-linguist
+qt5-qtcore-devel
+qt5-qtdeclarative-devel
+qt5-qtdeclarative-qtquick-devel
+qt5-qtgui-devel
+qt5-qtnetwork-devel
+qt5-qtopengl-devel
+qt5-qtxml-devel
+qt5-qtwidgets-devel
+qt5-qtplatformsupport-devel
+qt5-qtpublishsubscribe-devel 
+qt5-qtserviceframework-devel
+qt5-qtquick1-devel
+qt5-qtwayland-wayland_egl-devel
+qt5-qtsql-devel
+qmf-qt5-devel
+qt5-qtqml-import-webkitplugin
+qt5-qtdeclarative-import-multimedia
+qt5-qtdeclarative-import-particles2
+qt5-qtdeclarative-import-qtquick2plugin
+qt5-qtdeclarative-import-sensors
+qt5-qtdeclarative-qtquickparticles-devel
+qt5-qtdeclarative-import-dialogs
+qt5-qtdeclarative-import-folderlistmodel
+qt5-qtdeclarative-import-localstorageplugin
+qt5-qtdeclarative-import-location
+qt5-qtdeclarative-import-models2
+qt5-qtdeclarative-import-privatewidgets
+qt5-qtdeclarative-import-qttest
+qt5-qtdeclarative-import-window2
+qt5-qtdeclarative-pim-contacts
+qt5-qtdeclarative-pim-organizer
+qt5-qtdeclarative-plugin-accessible
+qt5-qtdeclarative-plugin-qmlinspector
+qt5-qtdeclarative-qtquick
+qt5-qtdeclarative-publishsubscribe
+qt5-qtdeclarative-qtquickparticles
+qt5-qtdeclarative-qtquicktest
+qt5-qtdeclarative-serviceframework
+qt5-qtdeclarative-systeminfo
+qt5-qtdeclarative
+
+#optional for a 'full' target:
+
+libqtwebkit5-devel
+qt5-qtsvg-devel
+qt5-qtsensors-devel
+qt5-qtconcurrent-devel
+qt5-qtdocgallery-devel
+qt5-qtconnectivity-qtbluetooth-devel
+qt5-qtlocation-devel
+qt5-qtfeedback-devel
+qt5-qtmultimedia-devel
+qt5-qtpim-contacts-devel
+qt5-qtpim-organizer-devel
+qt5-qtpim-versit-devel
+qt5-qtpim-versitorganizer-devel
+ssu
+ssu-vendor-data-nemo
+
 %end
 
 %post
-
-Config_Src=`gconftool-2 --get-default-source`
-
-#Set theme name
-gconftool-2 --direct --config-source $Config_Src \
-  -s -t string /meegotouch/theme/name "darko"
-
-# Set up proper target for libmeegotouch
-gconftool-2 --direct --config-source $Config_Src \
-  -s -t string /meegotouch/target/name N950
-
-# Hack to fix the plymouth based splash screen on N900
-mv /usr/bin/ply-image /usr/bin/ply-image-real
-cat > /usr/bin/ply-image << EOF
-#!/bin/sh
-echo 32 > /sys/class/graphics/fb0/bits_per_pixel
-exec /usr/bin/ply-image-real $@
-EOF
-chmod +x /usr/bin/ply-image
-## rpm-rebuilddb.post from mer-kickstarter-configs package
-# Rebuild db using target's rpm
-echo -n "Rebuilding db using target rpm.."
-rm -f /var/lib/rpm/__db*
-rpm --rebuilddb
-echo "done"
-## end rpm-rebuilddb.post
-
-if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
-    [ -n "@NEMO_RELEASE@" ] && ssu release -r @NEMO_RELEASE@
-    [ -n "@FLAVOUR@" ] && ssu flavour @FLAVOUR@
-    ssu mode 2
-else
-    [ -n "@NEMO_RELEASE@" ] && ssu release @NEMO_RELEASE@
-    ssu mode 4
-fi
-
-## arch-armv7hl.post from mer-kickstarter-configs package
-# Without this line the rpm don't get the architecture right.
-echo -n 'armv7hl-meego-linux' > /etc/rpm/platform
-
-# Also libzypp has problems in autodetecting the architecture so we force tha as well.
-# https://bugs.meego.com/show_bug.cgi?id=11484
-echo 'arch = armv7hl' >> /etc/zypp/zypp.conf
-## end arch-armv7hl.post
-
 
 %end
 
