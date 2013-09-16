@@ -138,12 +138,6 @@ glibc-devel
 
 %post
 
-Config_Src=`gconftool-2 --get-default-source`
-
-#Set theme name
-gconftool-2 --direct --config-source $Config_Src \
-  -s -t string /meegotouch/theme/name "darko"
-
 ## rpm-rebuilddb.post from mer-kickstarter-configs package
 # Rebuild db using target's rpm
 echo -n "Rebuilding db using target rpm.."
