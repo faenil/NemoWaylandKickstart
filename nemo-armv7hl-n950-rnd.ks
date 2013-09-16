@@ -168,10 +168,6 @@ ti-omap3-sgx-wayland-wsegl
 
 Config_Src=`gconftool-2 --get-default-source`
 
-#Set theme name
-gconftool-2 --direct --config-source $Config_Src \
-  -s -t string /meegotouch/theme/name "darko"
-
 # Set up proper target for libmeegotouch
 gconftool-2 --direct --config-source $Config_Src \
   -s -t string /meegotouch/target/name N950
