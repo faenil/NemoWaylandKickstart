@@ -21,35 +21,7 @@ repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_i486/
 
 %packages
-
-#We don't need Xorg stuff coming from x86 VM support
-#@x86 VM Support
-
-@Mer Core
-@Mer Connectivity 
-
-cjkuni-fonts
-liberation-fonts-common
-liberation-mono-fonts
-liberation-sans-fonts
-liberation-serif-fonts
-droid-sans-fonts
-droid-sans-mono-fonts
-droid-serif-fonts
-
-# No Xorg stuff
-#@mer-minimal-xorg
-
-# Nemo
-@nemo-mw
-
-# Deleting some Qt4 stuff from the rnd pattern
-#@nemo-rnd
-
-# We're getting rid of most of nemo-mw pattern
-#@nemo-ux
-
-
+@Nemo Complete Wayland
 
 #------ BEGIN X86-VM-SUPPORT -------
 acpid
@@ -71,67 +43,6 @@ qt5-qtdeclarative-qmlscene
 qt5-qtwayland-wayland_egl
 #------ END X86-VM-SUPPORT -------
 
-
-#------ BEGIN NEMO-RND -------
-connman-test
-diffutils
-gdb
-iotop
-libaccounts-glib-tools
-#edited (it was libcommhistory-tools)
-libcommhistory-qt5-tools
-#edited (it was lipstick-tools)
-lipstick-qt5-tools
-lynx
-mce-tools
-mer-gfx-tests
-nano
-ofono-tests
-openssh-clients
-openssh-server
-#edited (it was nemo-qml-plugin-contacts-tools)
-nemo-qml-plugin-contacts-qt5-tools
-screen
-tar
-tracker-utils
-vim-enhanced
-vim-minimal
-wget
-#------ END NEMO-RND -------
-
-#------ BEGIN NEMO-UX -------
-#Added to official pattern
-mapplauncherd-qt5
-
-nemo-firstsession
-nemo-mobile-session-wayland
-nemo-theme-default
-meegotouch-theme-darko
-lipstick-colorful-home-qt5
-# Wifi indicator needs this.
-contextkit-plugin-mce
-# For splash screen
-ce-backgrounds
-plymouth-lite
-#------ END NEMO-UX ---------
-
-#------ START NEMO-APPS------
-fingerterm
-qt-components-qt5-gallery
-qmlcalc
-qmlnotes
-qmlmaps
-qmlgallery
-qmlcalendar
-qmlpinquery
-qmlmusicplayer
-qmlfilemuncher
-qmlmail
-qmlsettings
-voicecall-ui-reference
-qmlcontacts
-qmlmessages
-#------ END NEMO-APPS--------
 
 #contribution by Jolla
 qt5-plugin-generic-vboxtouch
