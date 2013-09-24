@@ -22,32 +22,7 @@ repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/lates
 repo --name=faenil --baseurl=http://repo.merproject.org/obs/home:/faenil/latest_armv7hl/
 
 %packages
-@Mer Core
-@Mer Connectivity 
-
-cjkuni-fonts
-liberation-fonts-common
-liberation-mono-fonts
-liberation-sans-fonts
-liberation-serif-fonts
-droid-sans-fonts
-droid-sans-mono-fonts
-droid-serif-fonts
-
-# No Xorg stuff
-#@mer-minimal-xorg
-
-# Nemo
-@nemo-mw
-
-
-# Deleting some Qt4 stuff from the rnd pattern
-#@nemo-rnd
-
-# We're getting rid of most of nemo-mw pattern
-#@nemo-ux
-
-
+@Nemo Complete Wayland
 
 #------ BEGIN N9-N950-SUPPORT -------
 bme-rm-680-bin
@@ -86,67 +61,6 @@ policy-settings-basic-n950
 usb-moded-config-n950-n9
 #------ END N9-N950-SUPPORT -------
 
-
-#------ BEGIN NEMO-RND -------
-connman-test
-diffutils
-gdb
-iotop
-libaccounts-glib-tools
-#edited (it was libcommhistory-tools)
-libcommhistory-qt5-tools
-#edited (it was lipstick-tools)
-lipstick-qt5-tools
-lynx
-mce-tools
-mer-gfx-tests
-nano
-ofono-tests
-openssh-clients
-openssh-server
-#edited (it was nemo-qml-plugin-contacts-tools)
-nemo-qml-plugin-contacts-qt5-tools
-screen
-tar
-tracker-utils
-vim-enhanced
-vim-minimal
-wget
-#------ END NEMO-RND -------
-
-#------ BEGIN NEMO-UX -------
-#Added to official pattern
-mapplauncherd-qt5
-
-nemo-firstsession
-nemo-mobile-session-wayland
-nemo-theme-default
-meegotouch-theme-darko
-lipstick-colorful-home-qt5
-# Wifi indicator needs this.
-contextkit-plugin-mce
-# For splash screen
-ce-backgrounds
-plymouth-lite
-#------ END NEMO-UX ---------
-
-#------ START NEMO-APPS------
-fingerterm
-qt-components-qt5-gallery
-qmlcalc
-qmlnotes
-qmlmaps
-qmlgallery
-qmlcalendar
-qmlpinquery
-qmlmusicplayer
-qmlfilemuncher
-qmlmail
-qmlsettings
-voicecall-ui-reference
-qmlcontacts
-qmlmessages
-#------ END NEMO-APPS--------
 
 qt5-plugin-generic-evdev
 qt5-qtdeclarative-qmlscene
