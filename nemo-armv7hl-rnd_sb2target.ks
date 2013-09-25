@@ -17,6 +17,7 @@ repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/ux
 repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/apps/@NEMO_RELEASE@_armv7hl/ 
 repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_armv7hl/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
+repo --name=mer-tools --baseurl=http://repo.pub.meego.com/releases/Mer-Tools/rolling/builds/armv7hl/packages/
 
 
 %packages
