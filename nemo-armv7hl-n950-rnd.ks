@@ -19,62 +19,10 @@ repo --name=nemo-adaptation-n950-n9 --baseurl=http://repo.merproject.org/obs/nem
 repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_armv7hl/ 
 repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/ti:/omap3:/n9xx-common/@NEMO_RELEASE@_armv7hl/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
-repo --name=faenil --baseurl=http://repo.merproject.org/obs/home:/faenil/latest_armv7hl/
 
 %packages
-@Nemo Complete Wayland
+@Nemo N950 Wayland
 
-#------ BEGIN N9-N950-SUPPORT -------
-bme-rm-680-bin
-contextkit-plugin-power-bme
-contextkit-plugin-kbslider 
-dsme
-gstreamer0.10-nokia-videosrc
-gst-omapfb
-kernel-adaptation-n950
-n950-camera-fw
-nokia-n950-configs
-omap-update-display
-#pulseaudio-module-x11
-pulseaudio-modules-n900-cmtspeech
-pulseaudio-modules-n900-mainvolume
-pulseaudio-modules-n900-music
-pulseaudio-modules-n900-record
-pulseaudio-modules-n900-voice
-pulseaudio-settings-n950
-systemd-console-ttyS0
-
-
-ti-omap3-sgx-libEGL
-ti-omap3-sgx-libGLESv1
-ti-omap3-sgx-libGLESv2
-
-
-ti-wl1271-firmware
-ti-wl1273-bt-firmware
-ti-wl1273-fm-radio-firmware
-udev-rules-n950
-wl1271-cal-bin
-
-#Recommends
-policy-settings-basic-n950
-usb-moded-config-n950-n9
-#------ END N9-N950-SUPPORT -------
-
-
-qt5-plugin-generic-evdev
-qt5-qtdeclarative-qmlscene
-qt5-qtwayland-wayland_egl
-qt5-qtwayland-wayland_egl-examples 
-qt5-plugin-imageformat-jpeg 
-qt5-plugin-platform-eglfs 
-qt5-qtsvg-plugin-imageformat-svg
-qt5-qtmultimedia-gsttools
-qt5-qtmultimedia-plugin-mediaservice-gstmediaplayer
-gst-plugins-good
-
-nemo-configs-n950-n9
-ti-omap3-sgx-wayland-wsegl
 
 %end
 
