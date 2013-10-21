@@ -101,6 +101,32 @@ ssu-vendor-data-nemo
 
 %post
 
+## rpm-rebuilddb.post from mer-kickstarter-configs package
+# Rebuild db using target's rpm
+echo -n "Rebuilding db using target rpm.."
+rm -f /var/lib/rpm/__db*
+rpm --rebuilddb
+echo "done"
+## end rpm-rebuilddb.post
+
+if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
+    [ -n "@NEMO_RELEASE@" ] && ssu release -r @NEMO_RELEASE@
+    [ -n "@FLAVOUR@" ] && ssu flavour @FLAVOUR@
+    ssu mode 2
+else
+    [ -n "@NEMO_RELEASE@" ] && ssu release @NEMO_RELEASE@
+    ssu mode 4
+fi
+
+## arch-armv7hl.post from mer-kickstarter-configs package
+# Without this line the rpm don't get the architecture right.
+echo -n 'armv7hl-meego-linux' > /etc/rpm/platform
+
+# Also libzypp has problems in autodetecting the architecture so we force tha as well.
+# https://bugs.meego.com/show_bug.cgi?id=11484
+echo 'arch = armv7hl' >> /etc/zypp/zypp.conf
+## end arch-armv7hl.post
+
 %end
 
 %post --nochroot
