@@ -26,7 +26,12 @@ repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/lates
 
 %end
 
+%pre
+touch $INSTALL_ROOT/.bootstrap
+%end
+
 %post
+rm $INSTALL_ROOT/.bootstrap
 
 Config_Src=`gconftool-2 --get-default-source`
 
