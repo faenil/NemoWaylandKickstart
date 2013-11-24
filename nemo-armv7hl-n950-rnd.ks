@@ -22,7 +22,7 @@ repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/lates
 
 %packages
 @Nemo N950 Wayland
-
+qt5-feedback-haptics-ffmemless
 
 %end
 
