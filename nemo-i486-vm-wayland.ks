@@ -7,17 +7,17 @@
 lang en_US.UTF-8
 keyboard us
 timezone --utc UTC
-part / --size 3000 --ondisk sda --fstype=ext3
+part / --size 2000 --ondisk sda --fstype=ext3
 rootpw nemo
 xconfig --startxonboot
 bootloader  --timeout=0  --append="quiet video=vesafb:mtrr:3 vga=864 vt.global_cursor_default=0"
 user --name nemo  --groups audio,video --password nemo 
 
-repo --name=mer-core --baseurl=http://releases.merproject.org/releases/@MER_RELEASE@/builds/i486/packages  --debuginfo
-repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/ux/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/apps/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-adaptation-x86-generic --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/x86:/x86-common/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_i486/ 
+repo --name=mer-core --baseurl=http://releases.merproject.org/releases/latest/builds/i486/packages  --debuginfo
+repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/devel:/ux/latest_i486/ 
+repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/devel:/apps/latest_i486/ 
+repo --name=nemo-adaptation-x86-generic --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/x86:/x86-common/latest_i486/ 
+repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/devel:/mw/latest_i486/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_i486/
 
 %packages
@@ -34,7 +34,7 @@ kernel-adaptation-pc
 mesa-llvmpipe-dri-swrast-driver
 mesa-llvmpipe-libGLESv2
 nemo-configs-x86-vm-wayland
-contextkit-plugin-upower
+# contextkit-plugin-upower
 mesa-llvmpipe-libwayland-egl
 qt5-plugin-imageformat-jpeg 
 qt5-plugin-generic-evdev
@@ -68,11 +68,11 @@ echo "done"
 ## end rpm-rebuilddb.post
 
 if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
-    [ -n "@NEMO_RELEASE@" ] && ssu release -r @NEMO_RELEASE@
-    [ -n "@FLAVOUR@" ] && ssu flavour @FLAVOUR@
+    [ -n "latest" ] && ssu release -r latest
+    [ -n "devel" ] && ssu flavour devel
     ssu mode 2
 else
-    [ -n "@NEMO_RELEASE@" ] && ssu release @NEMO_RELEASE@
+    [ -n "latest" ] && ssu release latest
     ssu mode 4
 fi
 
