@@ -23,6 +23,7 @@ repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/lates
 %packages
 @Mer Core
 connman
+openssh-server
 #@Nemo Complete Wayland
 kernel-adaptation-sample
 #ti-omap3-sgx-wayland-wsegl 
