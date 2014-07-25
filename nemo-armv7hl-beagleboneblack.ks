@@ -17,13 +17,14 @@ repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/devel:/ux/lat
 repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/devel:/apps/latest_armv7hl/ 
 repo --name=nemo-adaptation-bbb --baseurl=http://repo.merproject.org/obs/home:/mike7b4:/bbb/latest_armv7hl/ 
 repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/devel:/mw/latest_armv7hl/ 
-repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/latest_armv7hl/ 
+#repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/latest_armv7hl/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
 
 %packages
-@Nemo Complete Wayland
+@Mer Core
+#@Nemo Complete Wayland
 kernel-adaptation-sample
-ti-omap3-sgx-wayland-wsegl 
+#ti-omap3-sgx-wayland-wsegl 
 
 %end
 
@@ -34,20 +35,8 @@ touch $INSTALL_ROOT/.bootstrap
 %post
 rm $INSTALL_ROOT/.bootstrap
 
-Config_Src=`gconftool-2 --get-default-source`
 
-# Set up proper target for libmeegotouch
-gconftool-2 --direct --config-source $Config_Src \
-  -s -t string /meegotouch/target/name N950
 
-# Hack to fix the plymouth based splash screen on N900
-mv /usr/bin/ply-image /usr/bin/ply-image-real
-cat > /usr/bin/ply-image << EOF
-#!/bin/sh
-echo 32 > /sys/class/graphics/fb0/bits_per_pixel
-exec /usr/bin/ply-image-real $@
-EOF
-chmod +x /usr/bin/ply-image
 ## rpm-rebuilddb.post from mer-kickstarter-configs package
 # Rebuild db using target's rpm
 echo -n "Rebuilding db using target rpm.."
@@ -56,14 +45,14 @@ rpm --rebuilddb
 echo "done"
 ## end rpm-rebuilddb.post
 
-if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
-    [ -n "latest" ] && ssu release -r latest
-    [ -n "devel" ] && ssu flavour devel
-    ssu mode 2
-else
-    [ -n "latest" ] && ssu release latest
-    ssu mode 4
-fi
+#if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
+#    [ -n "latest" ] && ssu release -r latest
+#    [ -n "devel" ] && ssu flavour devel
+#    ssu mode 2
+#else
+#    [ -n "latest" ] && ssu release latest
+#    ssu mode 4
+#fi
 
 ## arch-armv7hl.post from mer-kickstarter-configs package
 # Without this line the rpm don't get the architecture right.
