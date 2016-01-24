@@ -15,11 +15,12 @@ timezone --isUtc UTC
 desktop  --autologinuser=meego
 repo --name="mer-core" --baseurl=http://repo.merproject.org/obs/mer-core:/armv7hl:/devel/Core_armv7hl/ --debuginfo --ssl_verify=yes
 repo --name="nemo-ux" --baseurl=http://repo.merproject.org/obs/nemo:/devel:/ux/mer-core_armv7hl_devel/ --ssl_verify=yes
+
+TODO: this is still building against old nemo:devel:mw, needs transitioning to mer-core
 repo --name="nemo-apps" --baseurl=http://repo.merproject.org/obs/nemo:/devel:/apps/latest_armv7hl/ --ssl_verify=yes
-repo --name=nemo-adaptation-n950-n9         --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n950-n9/latest_armv7hl/ 
-repo --name=nemo-adaptation-n9xx-common     --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/latest_armv7hl/ 
-repo --name=filippz                         --baseurl=http://repo.merproject.org/obs/home:/filippz/latest_armv7hl/
-repo --name=filippz-mer-core                --baseurl=http://repo.merproject.org/obs/home:/filippz/Mer_Core_armv7hl/
+
+repo --name=nemo-adaptation-n950-n9         --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n950-n9/next_armv7hl/ 
+repo --name=nemo-adaptation-n9xx-common     --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/next_armv7hl/ 
 # Disk partitioning information
 part / --fstype="ext3" --ondisk=sda --size=1500
 
@@ -70,6 +71,15 @@ fi
 %end
 
 %packages
+
+#TODO: fix battery detectiong/charging
+#bme blob is linking explicitly to libdsme.so.0.2.0, but libdsme now exports libdsme.so.0.3.0
+#We need a workaround, either a symlink from 0.2.0 to 0.3.0 or something similar
+#bme-rm-680-bin
+#these pull in bme bins
+#statefs-provider-bme
+#upower-bme
+
 PackageKit-Qt5
 PackageKit-glib
 PackageKit-zypp
@@ -82,7 +92,6 @@ bash
 bluez-configs-mer
 bluez-libs
 bluez
-bme-rm-680-bin
 boardname
 boost-filesystem
 boost-system
@@ -462,7 +471,6 @@ sqlite
 ssu
 statefs-contextkit-subscriber
 statefs-pp
-statefs-provider-bme
 statefs-qt5
 statefs
 sysfsutils
@@ -495,7 +503,6 @@ tzdata-timed
 tzdata
 udev-rules-n950
 unzip
-upower-bme
 usb-moded-config-n950-n9
 usb-moded
 usbutils
