@@ -293,7 +293,7 @@ libxml2
 libxslt
 libzypp
 lipstick-glacier-home-qt5
-lipstick-qt5-tools-ui
+lipstick-qt5-screenshot
 lipstick-qt5-tools
 lipstick-qt5
 linux-firmware-ti-connectivity
