@@ -72,14 +72,6 @@ fi
 
 %packages
 
-#TODO: fix battery detectiong/charging
-#bme blob is linking explicitly to libdsme.so.0.2.0, but libdsme now exports libdsme.so.0.3.0
-#We need a workaround, either a symlink from 0.2.0 to 0.3.0 or something similar
-#bme-rm-680-bin
-#these pull in bme bins
-#statefs-provider-bme
-#upower-bme
-
 PackageKit-Qt5
 PackageKit-glib
 PackageKit-zypp
@@ -92,6 +84,7 @@ bash
 bluez-configs-mer
 bluez-libs
 bluez
+bme-rm-680-bin
 boardname
 boost-filesystem
 boost-system
@@ -471,6 +464,7 @@ sqlite
 ssu
 statefs-contextkit-subscriber
 statefs-pp
+statefs-provider-bme
 statefs-qt5
 statefs
 sysfsutils
@@ -532,3 +526,4 @@ zypper
 
 
 %end
+
