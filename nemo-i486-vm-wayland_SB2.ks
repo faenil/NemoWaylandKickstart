@@ -13,11 +13,11 @@ xconfig --startxonboot
 bootloader  --timeout=0  --append="quiet video=vesafb:mtrr:3 vga=864 vt.global_cursor_default=0"
 user --name nemo  --groups audio,video --password nemo 
 
-repo --name=mer-core --baseurl=http://releases.merproject.org/releases/@MER_RELEASE@/builds/i486/packages  --debuginfo
-repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/ux/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/apps/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-adaptation-x86-generic --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/hw:/x86:/x86-common/@NEMO_RELEASE@_i486/ 
-repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/@FLAVOUR@:/mw/@NEMO_RELEASE@_i486/ 
+repo --name=mer-core --baseurl=http://releases.merproject.org/releases/latest/builds/i486/packages  --debuginfo
+repo --name=nemo-ux --baseurl=http://repo.merproject.org/obs/nemo:/devel:/ux/latest_i486/ 
+repo --name=nemo-apps --baseurl=http://repo.merproject.org/obs/nemo:/devel:/apps/latest_i486/ 
+repo --name=nemo-adaptation-x86-generic --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/x86:/x86-common/latest_i486/ 
+repo --name=nemo-mw --baseurl=http://repo.merproject.org/obs/nemo:/devel:/mw/latest_i486/ 
 repo --name=mer-qt --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_i486/
 
 %packages
@@ -50,7 +50,6 @@ droid-serif-fonts
 #@nemo-ux
 
 
-
 #------ BEGIN X86-VM-SUPPORT -------
 acpid
 linux-firmware
@@ -62,7 +61,8 @@ kernel-adaptation-pc
 mesa-llvmpipe-dri-swrast-driver
 mesa-llvmpipe-libGLESv2
 nemo-configs-x86-vm-wayland
-contextkit-plugin-upower
+# unsatisfied deps
+#contextkit-plugin-upower
 mesa-llvmpipe-libwayland-egl
 qt5-plugin-imageformat-jpeg 
 qt5-plugin-generic-evdev
@@ -133,7 +133,62 @@ qt-components-qt5-gallery
 #needed for the SB2 target
 libsb2
 meego-rpm-config
+#glibc-devel
+
+# Qt 5 devel
+zypper
+rpm-build
+gdb
 glibc-devel
+mesa-llvmpipe-libEGL-devel
+mesa-llvmpipe-libGLESv2-devel
+qt5-qmake
+qt5-tools
+qt5-default
+qt5-qttools-linguist
+qt5-qtcore-devel
+qt5-qtdeclarative-devel
+qt5-qtdeclarative-qtquick-devel
+qt5-qtgui-devel
+qt5-qtnetwork-devel
+qt5-qtopengl-devel
+qt5-qtxml-devel
+qt5-qtwidgets-devel
+qt5-qtplatformsupport-devel
+qt5-qtpublishsubscribe-devel
+qt5-qtserviceframework-devel
+qt5-qtquick1-devel
+qt5-qtwayland-wayland_egl-devel
+qt5-qtsql-devel
+qmf-qt5-devel
+qt5-qtqml-import-webkitplugin
+qt5-qtdeclarative-import-multimedia
+qt5-qtdeclarative-import-particles2
+qt5-qtdeclarative-import-qtquick2plugin
+qt5-qtdeclarative-import-sensors
+qt5-qtdeclarative-qtquickparticles-devel
+qt5-qtdeclarative-import-dialogs
+qt5-qtdeclarative-import-folderlistmodel
+qt5-qtdeclarative-import-localstorageplugin
+qt5-qtdeclarative-import-location
+qt5-qtdeclarative-import-models2
+qt5-qtdeclarative-import-privatewidgets
+qt5-qtdeclarative-import-qttest
+qt5-qtdeclarative-import-window2
+qt5-qtdeclarative-pim-contacts
+qt5-qtdeclarative-pim-organizer
+qt5-qtdeclarative-plugin-accessible
+qt5-qtdeclarative-plugin-qmlinspector
+qt5-qtdeclarative-qtquick
+qt5-qtdeclarative-publishsubscribe
+qt5-qtdeclarative-qtquickparticles
+qt5-qtdeclarative-qtquicktest
+qt5-qtdeclarative-serviceframework
+qt5-qtdeclarative-systeminfo
+qt5-qtdeclarative
+
+
+
 %end
 
 %post
@@ -147,11 +202,11 @@ echo "done"
 ## end rpm-rebuilddb.post
 
 if [ "@SSU_RELEASE_TYPE@" = "rnd" ]; then
-    [ -n "@NEMO_RELEASE@" ] && ssu release -r @NEMO_RELEASE@
-    [ -n "@FLAVOUR@" ] && ssu flavour @FLAVOUR@
+    [ -n "latest" ] && ssu release -r latest
+    [ -n "devel" ] && ssu flavour devel
     ssu mode 2
 else
-    [ -n "@NEMO_RELEASE@" ] && ssu release @NEMO_RELEASE@
+    [ -n "devel" ] && ssu release devel
     ssu mode 4
 fi
 
